@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>first render</title>
+    <style>
+      p {
+        background-color: rebeccapurple;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>First render</h1>
+    <button onclick="getData()">getData</button>
+    <div></div>
+    <script>
+      let div = document.querySelector("div");
+      let output = "";
+      let url = "http://localhost:3000/";
+      async function getData() {
+        let response = await fetch(url + "get-data");
+        let { data, message } = await response.json();
+        data.forEach((each) => {
+          output += `<p>${each.name}</p>`;
+        });
+        console.log(message);
+        div.innerHTML = output;
+      }
+    </script>
+  </body>
+</html>
